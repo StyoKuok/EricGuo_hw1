@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "C:/Users/Eric Guo/Desktop/EricGuo_hw1/EricGuo_hw1")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "C:/Users/Eric Guo/Desktop/EricGuo_hw1/EricGuo_hw1")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "C:/Users/Eric Guo/Desktop/EricGuo_hw1/EricGuo_hw1/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)
