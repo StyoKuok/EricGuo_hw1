@@ -72,7 +72,7 @@ Matrix mul_matrix(Matrix a, Matrix b)
             result.data[i][j] = 0;//初始化为0
             for (k=0;k<a.cols;k++)
             {
-                result.data[i][j]+=a.data[i][k]*b.data[k][i];
+                result.data[i][j]+=a.data[i][k]*b.data[k][j];
             }
         }
     }
@@ -236,11 +236,12 @@ void divideRows(Matrix *a, int row1, int row2, int col0) {
         a->data[row1][i] -= a->data[row2][i] * shang;
     }
 }
-int stee;
+//int stee;
 
 int rank_matrix(Matrix a) {
     int rank;
     int i, j, k;
+    int stee =a.rows-1;
     if (a.rows < a.cols) {
         rank = a.rows;
     } else {
@@ -252,13 +253,12 @@ int rank_matrix(Matrix a) {
     for (i = 0; i < a.cols; i++) {
         for (j = seq; j < a.rows; j++) {
             if (a.data[j][i] == 0) {
-                int stee = a.rows - 1;
                 swapRows(&a, j, stee);
-                stee -= 1;
+                stee --;
             }
         }
         for (k = 1; k < stee + 1; k++) {
-            divideRows(&a, k, 0, i);
+            divideRows(&a, k, k-1, i);
         }
         seq += 1;
     }
