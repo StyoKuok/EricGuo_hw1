@@ -1,7 +1,7 @@
 #include "algebra.h"
 #include <stdio.h>
 #include <math.h>
-
+#include <stdlib.h>
 Matrix create_matrix(int row, int col)
 {
     Matrix m;
@@ -170,25 +170,31 @@ double det_matrix(Matrix a)
     }
 }
 
+
 Matrix inv_matrix(Matrix a)
 {
     // ToDo
     double det=det_matrix(a);
     int seq=0;
-    if (det==0.0)
+    if (a.cols!=a.rows)
     {
         printf("Error: The matrix must be a square matrix.\n");
+        return create_matrix(0, 0);
+    }
+    else if (det_matrix(a)==0){
+        printf("Error: The matrix must be a square matrix.\n");
+        printf("Error: The matrix is singular.\n");
         return create_matrix(0, 0);
     }
     else
     {
         int i,j,m,n;
         int N =a.cols;
-        Matrix inv_a=create_matrix(N,N);
+        Matrix inv_a=create_matrix(N,N);//存储逆矩阵
         
         for (i=0;i<N;i++)
         {
-            Matrix temp_a=create_matrix(N-1,N-1);
+            Matrix temp_a=create_matrix(N-1,N-1);//计算用的临时存储
             
             for (j=0;j<N;j++)
             {
@@ -211,16 +217,25 @@ Matrix inv_matrix(Matrix a)
                         numj++;
                     }
                     numi++;
+                    numj=0;
                 }
             }
             //逆矩阵每一个位置对应一个temp_a矩阵，所以仍然需要把运算放在整个循环体内。
             int tempo=(i+j)%2?-1:1;
             inv_a.data[j][i] = tempo * det_matrix(temp_a)/det;
+            /*
+            for (int q=0;q<N-1;q++){
+                for (int f=0;f<N-1;f++){
+                temp_a.data[q][f]=0;
+            }
+            }*/
         }
         //循环运行结束，输出值inv_a
     return inv_a;
     }
 }
+
+
 //计算矩阵的秩需要的函数1：检查0行
 void swapRows(Matrix *a, int row1, int row2) {
     for (int i = 0; i < a->cols; i++) {
