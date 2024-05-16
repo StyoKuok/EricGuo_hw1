@@ -61,7 +61,7 @@ Matrix sub_matrix(Matrix a, Matrix b)
 Matrix mul_matrix(Matrix a, Matrix b)
 {
     // ToDo
-    Matrix result=create_matrix(a.rows,b.cols);;
+    Matrix result=create_matrix(a.rows,b.cols);
     int i,j,k;
     if (a.cols==b.rows)
     {
@@ -81,7 +81,7 @@ Matrix mul_matrix(Matrix a, Matrix b)
     
     else
     {
-        printf("Error: Matrix a and b must have the same rows and cols.\n");
+        printf("Error: The number of cols of matrix a must be equal to the number of rows of matrix b.\n");
         return create_matrix(0,0);
     }
 }
@@ -105,11 +105,11 @@ Matrix scale_matrix(Matrix a, double k)
 
 Matrix transpose_matrix(Matrix a)
 {
-    Matrix result=create_matrix(a.rows,a.cols);
+    Matrix result=create_matrix(a.cols,a.rows);
     int i,j;
-    for (i=0;i<a.rows;i++)
+    for (i=0;i<a.cols;i++)
     {
-        for (j=0;j<a.cols;j++)
+        for (j=0;j<a.rows;j++)
         {
             result.data[i][j]=0;
             result.data[i][j]=a.data[j][i];
