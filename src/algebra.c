@@ -214,7 +214,8 @@ Matrix inv_matrix(Matrix a)
                 }
             }
             //逆矩阵每一个位置对应一个temp_a矩阵，所以仍然需要把运算放在整个循环体内。
-            inv_a.data[j][i] = pow(-1.0, i + j) * det_matrix(temp_a)/det;
+            int tempo=(i+j)%2?-1:1;
+            inv_a.data[j][i] = tempo * det_matrix(temp_a)/det;
         }
         //循环运行结束，输出值inv_a
     return inv_a;

@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/Eric Guo/Desktop/EricGuo_hw1/EricGuo_hw1/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\gcc.exe  @CMakeFiles/main.dir/includes_C.rsp -g -o CMakeFiles\\main.dir\\src\\algebra.c.obj -c \"C:\\Users\\Eric Guo\\Desktop\\EricGuo_hw1\\EricGuo_hw1\\src\\algebra.c\"",
+  "file": "C:/Users/Eric Guo/Desktop/EricGuo_hw1/EricGuo_hw1/src/algebra.c",
+  "output": "CMakeFiles/main.dir/src/algebra.c.obj"
+},
+{
+  "directory": "C:/Users/Eric Guo/Desktop/EricGuo_hw1/EricGuo_hw1/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\gcc.exe  @CMakeFiles/main.dir/includes_C.rsp -g -o CMakeFiles\\main.dir\\src\\main.c.obj -c \"C:\\Users\\Eric Guo\\Desktop\\EricGuo_hw1\\EricGuo_hw1\\src\\main.c\"",
+  "file": "C:/Users/Eric Guo/Desktop/EricGuo_hw1/EricGuo_hw1/src/main.c",
+  "output": "CMakeFiles/main.dir/src/main.c.obj"
+}
+]

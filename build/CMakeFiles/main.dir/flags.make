@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = @CMakeFiles/main.dir/includes_C.rsp
 
-C_FLAGS = 
+C_FLAGS = -g
 
