@@ -286,7 +286,8 @@ double trace_matrix(Matrix a)
     {
         printf("Error: The matrix must be a square matrix.\n");
     }
-    int tr,i;
+    int i;
+    double tr =0.0;
     for (i=0;i<a.cols;i++)
     {
         tr+=a.data[i][i];
