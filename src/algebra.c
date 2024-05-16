@@ -285,6 +285,7 @@ double trace_matrix(Matrix a)
     if (a.cols!=a.rows)
     {
         printf("Error: The matrix must be a square matrix.\n");
+        return 0;
     }
     int i;
     double tr =0.0;
