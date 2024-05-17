@@ -191,16 +191,17 @@ Matrix det_minor(int i, int j, Matrix a) {
 }
 
 Matrix inv_matrix(Matrix a) {
-    double det = det_matrix(a);
     
-    if (a.rows == a.cols && det == 0) {
-        printf("Error: The matrix is singular.\n");
-        return create_matrix(0, 0);
-    } else if (a.rows != a.cols) {
-        //printf("Error: The matrix must be a square matrix.\n");
+    if (a.rows != a.cols) {
+        printf("Error: The matrix must be a square matrix.\n");
         //前面det已经输出过一遍了！
         return create_matrix(0, 0);
-    } else {
+    }
+    double det = det_matrix(a);
+     if ( det == 0) {
+        printf("Error: The matrix is singular.\n");
+        return create_matrix(0, 0);
+    }  else {
         int N = a.rows;
         double value;
         Matrix inv_a = create_matrix(N, N); // 存储逆矩阵
