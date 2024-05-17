@@ -170,70 +170,57 @@ double det_matrix(Matrix a)
     }
 }
 
-
-Matrix inv_matrix(Matrix a)
-{
-    // ToDo
-    double det=det_matrix(a);
-    int seq=0;
-    if (a.cols!=a.rows)
-    {
-        printf("Error: The matrix must be a square matrix.\n");
-        return create_matrix(0, 0);
+Matrix det_minor(int i, int j, Matrix a) {
+    int numi = 0, numj = 0;
+    Matrix temp = create_matrix(a.rows - 1, a.cols - 1);     
+    for (int s = 0; s < a.rows; s++) {
+        if (s == i) {
+            continue;
+        }
+        numj = 0;
+        for (int t = 0; t < a.cols; t++) {
+            if (t == j) {
+                continue;
+            }
+            temp.data[numi][numj] = a.data[s][t];
+            numj++;
+        }
+        numi++;
     }
-    else if (det_matrix(a)==0){
-        printf("Error: The matrix must be a square matrix.\n");
+    return temp;
+}
+
+Matrix inv_matrix(Matrix a) {
+    double det = det_matrix(a);
+    
+    if (a.rows == a.cols && det == 0) {
         printf("Error: The matrix is singular.\n");
         return create_matrix(0, 0);
-    }
-    else
-    {
-        int i,j,m,n;
-        int N =a.cols;
-        Matrix inv_a=create_matrix(N,N);//存储逆矩阵
+    } else if (a.rows != a.cols) {
+        //printf("Error: The matrix must be a square matrix.\n");
+        //前面det已经输出过一遍了！
+        return create_matrix(0, 0);
+    } else {
+        int N = a.rows;
+        double value;
+        Matrix inv_a = create_matrix(N, N); // 存储逆矩阵
+        Matrix temp_a = create_matrix(N - 1, N - 1); // 计算用的临时存储
         
-        for (i=0;i<N;i++)
-        {
-            Matrix temp_a=create_matrix(N-1,N-1);//计算用的临时存储
-            
-            for (j=0;j<N;j++)
-            {
-                int numi=0;
-                int numj=0;
-                //以上，i，j遍历的整个矩阵的所有行列，外层循环是揪出来i和j行。
-                //以下，m, n是把矩阵数据重新按顺序存储，又需要一个嵌套的循环。
-                //numi 和numj 存储i，j和m,n运算之后的结果，写入temp_a矩阵。
-                    //总共需要三组参数进行监控
-                for (m=0;m<N;m++)
-                {
-                    if (m==i)
-                        continue;
-                    
-                    for (n=0;n<N;n++)
-                    {
-                        if (n==j)
-                            continue;
-                        temp_a.data[numi][numj]=a.data[m][n];
-                        numj++;
-                    }
-                    numi++;
-                    numj=0;
-                }
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                Matrix temp_a = det_minor(i, j, a);
+                value = det_matrix(temp_a);
+                
+                int tempo = (i + j) % 2 ? -1 : 1;
+                inv_a.data[j][i] = tempo * value / det;
             }
-            //逆矩阵每一个位置对应一个temp_a矩阵，所以仍然需要把运算放在整个循环体内。
-            int tempo=(i+j)%2?-1:1;
-            inv_a.data[j][i] = tempo * det_matrix(temp_a)/det;
-            /*
-            for (int q=0;q<N-1;q++){
-                for (int f=0;f<N-1;f++){
-                temp_a.data[q][f]=0;
-            }
-            }*/
         }
-        //循环运行结束，输出值inv_a
-    return inv_a;
+        
+        // 循环运行结束，输出值inv_a
+        return inv_a;
     }
 }
+
 
 
 //计算矩阵的秩需要的函数1：交换行
@@ -280,9 +267,9 @@ int rank_matrix(Matrix a) {
     }
 
     // 进行判断0行数量
-    int see;
+    int zero_rows=0;
     for (i = a.rows - 1; i >= 0; i--) {
-        see=0;
+        int see=0;
         for (j = 0; j < a.cols; j++) {
             if (a.data[i][j] == 0) {
                 see++;
@@ -290,14 +277,16 @@ int rank_matrix(Matrix a) {
         }
         
         if (see == a.cols) {
-            rank--;
+            zero_rows++;
         }
         
     }
-    if (a.cols>=3) 
-    {
+    rank-=zero_rows;
+    if (a.cols>=3){
         rank++;
     }
+        
+
     return rank;
 }
 
