@@ -14,4 +14,10 @@ CMakeFiles/main.dir/src/algebra.c.obj: \
  C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
  C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
  C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/_mingw_print_pop.h \
- C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/math.h
+ C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/math.h \
+ C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+ C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/limits.h \
+ C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/syslimits.h \
+ C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/limits.h \
+ C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ C:/PROGRA~1/mingw64/x86_64-w64-mingw32/include/malloc.h

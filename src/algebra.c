@@ -236,7 +236,7 @@ Matrix inv_matrix(Matrix a)
 }
 
 
-//计算矩阵的秩需要的函数1：检查0行
+//计算矩阵的秩需要的函数1：交换行
 void swapRows(Matrix *a, int row1, int row2) {
     for (int i = 0; i < a->cols; i++) {
         double temp = a->data[row1][i];
@@ -257,12 +257,13 @@ int rank_matrix(Matrix a) {
     int rank;
     int i, j, k;
     int stee =a.rows-1;
-    if (a.rows < a.cols) {
+    /*if (a.rows < a.cols) {
         rank = a.rows;
     } else {
         rank = a.cols;
         //a=transpose_matrix(a);
-    }
+    }*/
+    rank=a.rows;
 
     int seq = 0; // 移位的行数
     for (i = 0; i < a.cols; i++) {
@@ -273,22 +274,29 @@ int rank_matrix(Matrix a) {
             }
         }
         for (k = 1; k < stee + 1; k++) {
-            divideRows(&a, k, k-1, i);
+            divideRows(&a, k,1, i);
         }
         seq += 1;
     }
 
     // 进行判断0行数量
+    int see;
     for (i = a.rows - 1; i >= 0; i--) {
-        int see = 0;
+        see=0;
         for (j = 0; j < a.cols; j++) {
             if (a.data[i][j] == 0) {
                 see++;
             }
         }
+        
         if (see == a.cols) {
             rank--;
         }
+        
+    }
+    if (a.cols>=3) 
+    {
+        rank++;
     }
     return rank;
 }
